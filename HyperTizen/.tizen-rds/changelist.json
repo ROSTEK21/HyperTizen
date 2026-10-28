@@ -1,0 +1,11 @@
+{
+  "projectDir": "c:\\Users\\Dani\\Documents\\GitHub\\danis-hyper-tizen\\HyperTizen",
+  "deploys": {
+    "next": [
+      {
+        "path": "bin/Debug/tizen90/tpkroot/bin/HyperTizen.dll",
+        "type": "modify"
+      }
+    ]
+  }
+}

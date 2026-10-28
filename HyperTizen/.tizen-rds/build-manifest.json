@@ -1,0 +1,18 @@
+{
+  "projectDir": "c:\\Users\\Dani\\Documents\\GitHub\\danis-hyper-tizen\\HyperTizen",
+  "timestamp": "2026-10-27T22:34:18.940Z",
+  "hashAlgorithm": "xxh3-128",
+  "input": {
+    "HyperTizen.csproj": {
+      "hash": "a6c5b5715c17b036db2a606dc8dcc420"
+    },
+    "Capturer.cs": {
+      "hash": "4269bbae4612d4a2d4b3f5e35fff2b18"
+    }
+  },
+  "output": {
+    "bin/Debug/tizen90/tpkroot/bin/HyperTizen.dll": {
+      "hash": "1b97997155849b8d45dfc393363b21ba"
+    }
+  }
+}

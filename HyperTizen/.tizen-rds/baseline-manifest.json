@@ -1,0 +1,70 @@
+{
+  "deployId": 1,
+  "projectDir": "c:\\Users\\Dani\\Documents\\GitHub\\danis-hyper-tizen\\HyperTizen",
+  "timestamp": "2026-10-27T23:11:51.384Z",
+  "hashAlgorithm": "xxh3-128",
+  "input": {
+    ".gitattributes": {
+      "hash": "de5aac6a34914e4f1d16c6ed9bd33ba7"
+    },
+    "Capturer.cs": {
+      "hash": "4269bbae4612d4a2d4b3f5e35fff2b18"
+    },
+    "Directory.Build.targets": {
+      "hash": "c579017945d4ab5cde83cf0ec3eb7704"
+    },
+    "HyperTizen.csproj": {
+      "hash": "a6c5b5715c17b036db2a606dc8dcc420"
+    },
+    "HyperTizen_App.cs": {
+      "hash": "05df67ad5265adbb4ce902a69014a2ae"
+    },
+    "WebSocket/DataTypes.cs": {
+      "hash": "14693bc0df972b89ae4e9ec045aaaa3f"
+    },
+    "WebSocket/HyperionClient.cs": {
+      "hash": "e9c4e8499f0d2ae0c40c338c2278d5e3"
+    },
+    "WebSocket/WebSocket.cs": {
+      "hash": "08b6d7cb12458c515ba7feb7a8fb2b88"
+    },
+    "shared/res/HyperTizen.png": {
+      "hash": "582e70e6a6d7471f5875f4d3bdde3410"
+    },
+    "tizen-manifest.xml": {
+      "hash": "91f0961f526f1d9ef49d6bc169fe99f7"
+    },
+    "tizen_dotnet_project.yaml": {
+      "hash": "aa081eb9b9357b783fafa4c6fe15da01"
+    }
+  },
+  "output": {
+    "bin/Debug/tizen90/tpkroot/tizen-manifest.xml": {
+      "hash": "91f0961f526f1d9ef49d6bc169fe99f7"
+    },
+    "bin/Debug/tizen90/tpkroot/HyperTizen.deps.json": {
+      "hash": "2445dc8c58e3d0760f6b498f4d4df435"
+    },
+    "bin/Debug/tizen90/tpkroot/bin/SkiaSharp.dll": {
+      "hash": "6800743a976ad0182b3fc138f3929322"
+    },
+    "bin/Debug/tizen90/tpkroot/bin/Rssdp.dll": {
+      "hash": "17756993f308cd180272820d6350b9ec"
+    },
+    "bin/Debug/tizen90/tpkroot/bin/Newtonsoft.Json.dll": {
+      "hash": "fb2f93cffffbc4ec8d0dc866fbc33182"
+    },
+    "bin/Debug/tizen90/tpkroot/bin/HyperTizen.dll": {
+      "hash": "1b97997155849b8d45dfc393363b21ba"
+    },
+    "bin/Debug/tizen90/tpkroot/shared/res/HyperTizen.png": {
+      "hash": "582e70e6a6d7471f5875f4d3bdde3410"
+    },
+    "bin/Debug/tizen90/tpkroot/bin/runtimes/tizen-armel/native/libSkiaSharp.so": {
+      "hash": "b4d4d87a084f6d082d9d8b6928dc9e38"
+    },
+    "bin/Debug/tizen90/tpkroot/bin/runtimes/linux-x86/native/libSkiaSharp.so": {
+      "hash": "b167393821f3329a53126b444f9f4dcf"
+    }
+  }
+}

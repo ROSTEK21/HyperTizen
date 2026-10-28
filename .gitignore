@@ -1,0 +1,9 @@
+.buildResult
+release
+.vs
+obj
+bin
+*.csproj.user
+.sign
+*.wgt
+.vscode
