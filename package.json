@@ -1,0 +1,15 @@
+{
+  "name": "hypertizen-ui-plus",
+  "appName": "HyperTizen+",
+  "version": "1.1.0",
+  "description": "HyperTizen interface with live diagnostics for Hyperion / HyperHDR.",
+  "packageType": "app",
+  "appPath": "index.html",
+  "author": "Based on HyperTizenUI by Reis Can",
+  "serviceFile": "js/service.js",
+  "keys": [],
+  "repository": {
+    "url": "https://github.com/YOUR_USER/YOUR_REPO"
+  },
+  "license": "GPL-3.0-only"
+}
