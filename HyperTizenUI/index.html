@@ -1,81 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HyperTizen</title>
-    <link rel="stylesheet" href="main.css">
-    <script src="js/wsClient.js"></script>
-    <script type="text/javascript" src="$WEBAPIS/webapis/webapis.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HyperTizen+</title>
+  <link rel="stylesheet" href="main.css">
 </head>
+<body data-level="idle">
+  <div class="glow" aria-hidden="true"></div>
 
-<body>
-    <div class="content">
+  <main>
+    <header>
+      <div class="brand">
+        <img src="icon.png" alt="" width="64" height="64">
         <h1>HyperTizen</h1>
-        <h3 id="status">Status</h3>
-        <a><input type="checkbox" id="enabled"> Enabled</a>
-        <h2 id="ssdpDeviceTitle">SSDP Devices</h2>
-        <div id="ssdpItems"></div>
+      </div>
+      <p class="meta" id="meta">Pornire…</p>
+    </header>
+
+    <section class="verdict" aria-live="polite">
+      <h2 id="vTitle">Pornire…</h2>
+      <p id="vDetail"></p>
+    </section>
+
+    <section class="chain" aria-label="Starea fiecărei etape">
+      <div class="node" id="n0"><h3>Serviciu TV</h3><p class="st"></p><p class="dt"></p></div>
+      <div class="link" aria-hidden="true"></div>
+      <div class="node" id="n1"><h3>Server Hyperion</h3><p class="st"></p><p class="dt"></p></div>
+      <div class="link" aria-hidden="true"></div>
+      <div class="node" id="n2"><h3>Legătura TV către PC</h3><p class="st"></p><p class="dt"></p></div>
+      <div class="link" aria-hidden="true"></div>
+      <div class="node" id="n3"><h3>Imagine primită</h3><p class="st"></p><p class="dt"></p></div>
+    </section>
+
+    <div class="cols">
+      <section class="panel">
+        <h3>Server Hyperion</h3>
+        <p class="line" id="rpcLine"></p>
+        <div class="devices" id="devices"></div>
+        <div class="actions">
+          <button type="button" id="btnScan">Caută din nou</button>
+          <button type="button" id="btnTest">Testează legătura</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h3>Captură</h3>
+        <p class="line" id="capLine"></p>
+        <div class="actions">
+          <button type="button" id="btnCap" class="primary">Pornește captura</button>
+          <button type="button" id="btnReload">Reîncarcă interfața</button>
+        </div>
+      </section>
     </div>
+
+    <section class="panel logpanel">
+      <h3>Jurnal</h3>
+      <pre id="log" aria-live="off"></pre>
+      <div class="actions"><button type="button" id="btnLog">Arată mai mult</button></div>
+    </section>
+  </main>
+
+  <div id="toast" role="status"></div>
+
+  <script src="js/app.js"></script>
+  <script type="text/javascript" src="$WEBAPIS/webapis/webapis.js"></script>
 </body>
-
-<script>
-    window.onload = function () {
-        let elements = document.querySelectorAll('button, input, [tabindex]');
-        let elementsArray = Array.prototype.slice.call(elements);
-        let focusedElement = document.activeElement;
-        let focusedIndex = elementsArray.indexOf(focusedElement);
-
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                if (focusedIndex < elementsArray.length - 1) {
-                    elementsArray[focusedIndex + 1].focus();
-                    focusedIndex++;
-                }
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                if (focusedIndex > 0) {
-                    elementsArray[focusedIndex - 1].focus();
-                    focusedIndex--;
-                }
-            } else if (e.key == 'Enter') {
-                e.preventDefault();
-                const element = elementsArray[focusedIndex];
-                element.click();
-                if (element.classList.contains('ssdpItem')) {
-                    const uri = element.getAttribute('data-uri');
-                    setRPC(uri);
-                }
-            }
-        });
-
-        const observer = new MutationObserver(function (mutations) {
-            mutations.forEach(function (mutation) {
-                if (mutation.addedNodes.length > 0) {
-                    elements = document.querySelectorAll('button, input, [tabindex]');
-                    elementsArray = Array.prototype.slice.call(elements);
-                    focusedIndex = elementsArray.indexOf(document.activeElement);
-                }
-            });
-        });
-
-        observer.observe(document.body, { childList: true, subtree: true });
-        fetch('http://127.0.0.1:8081').then(res => res.text()).then(ip => {
-            deviceIP = ip;
-
-            const testWS = new WebSocket(`ws://${ip}:8086`);
-
-            testWS.onopen = function () {
-                testWS.close();
-                open();
-            };
-            testWS.onerror = function () {
-                location.reload();
-            };
-        });
-    };
-</script>
-
 </html>
