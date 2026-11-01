@@ -22,6 +22,8 @@
     image: 'idle',        // idle | wait | ok | bad
     imageDetail: '',
     pending: {},          // key -> expected value (for confirmations)
+    rpcTimer: null,
+    saveFailed: false,    // service ignored the last server choice
     logs: [],
     logMore: false,
     t0: Date.now()
@@ -121,8 +123,9 @@
         S.rpc = val;
         log('Server salvat: ' + (val === null ? 'niciunul' : val));
         if (S.pending.rpcServer !== undefined) {
-          if (val === S.pending.rpcServer) toast('Server salvat');
-          else toast('Serviciul nu a păstrat setarea');
+          clearTimeout(S.rpcTimer);
+          if (val === S.pending.rpcServer) { S.saveFailed = false; toast('Server salvat'); }
+          else { S.saveFailed = true; toast('Serviciul nu a păstrat setarea'); log('Serviciul a răspuns, dar nu a păstrat serverul ales.'); }
           delete S.pending.rpcServer;
         }
         if (changed) { S.link = val ? 'wait' : 'idle'; S.linkDetail = ''; connectHyperion(); }
@@ -161,6 +164,15 @@
     if (!sendSvc({ event: EV.SetConfig, key: 'rpcServer', value: url })) { toast('Serviciul nu e conectat'); return; }
     log('Aleg serverul ' + url);
     sendRead('rpcServer');
+    clearTimeout(S.rpcTimer);
+    S.rpcTimer = setTimeout(function () {
+      if (S.pending.rpcServer === undefined) return;
+      delete S.pending.rpcServer;
+      log('Serviciul nu a răspuns la alegerea serverului (3 secunde).');
+      toast('Serviciul nu a confirmat alegerea');
+      S.saveFailed = true;
+      render();
+    }, 3000);
   }
 
   function toggleCapture() {
@@ -276,6 +288,10 @@
       detail = S.tvIp
         ? 'Interfața încearcă din nou la câteva secunde. Dacă rămâne așa, serviciul nu rulează pe TV: reinstalează pachetul sau repornește TV-ul.'
         : 'Aștept răspunsul TizenBrew.';
+    } else if (!S.rpc && S.saveFailed) {
+      lvl = 'bad';
+      title = 'Serviciul nu salvează serverul ales';
+      detail = 'Serviciul de pe TV primește alegerea, dar nu răspunde și nu o păstrează. Asta indică o eroare în serviciu, nu în rețea sau în interfață.';
     } else if (!S.rpc) {
       lvl = 'wait';
       title = 'Alege serverul Hyperion';
